@@ -1,0 +1,313 @@
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dune Roleplay | Documentatie</title>
+<style>
+:root {
+  --bg:#101010;
+  --panel:#171717;
+  --gold:#d6ad58;
+  --text:#eeeae1;
+  --muted:#999;
+  --border:#302a20;
+}
+* {box-sizing:border-box}
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial,sans-serif;
+}
+header {
+  height:68px;
+  display:flex;
+  align-items:center;
+  padding:0 25px;
+  border-bottom:1px solid var(--border);
+  position:sticky;
+  top:0;
+  background:#111;
+  z-index:5;
+}
+.logo {
+  color:var(--gold);
+  font-size:23px;
+  font-weight:900;
+  letter-spacing:4px;
+}
+.logo small {
+  display:block;
+  font-size:9px;
+  letter-spacing:3px;
+  color:#aaa;
+}
+.layout {display:flex;min-height:calc(100vh - 68px)}
+aside {
+  width:260px;
+  padding:25px 17px;
+  border-right:1px solid var(--border);
+  flex-shrink:0;
+}
+aside h4 {
+  color:var(--gold);
+  font-size:11px;
+  letter-spacing:2px;
+}
+nav button {
+  display:block;
+  width:100%;
+  text-align:left;
+  padding:11px;
+  background:transparent;
+  color:#aaa;
+  border:0;
+  border-radius:6px;
+  cursor:pointer;
+  font-size:14px;
+}
+nav button:hover,nav button.active {
+  color:var(--gold);
+  background:#282319;
+}
+main {
+  max-width:900px;
+  width:100%;
+  padding:55px 7%;
+}
+input {
+  width:100%;
+  padding:13px;
+  background:#1b1b1b;
+  border:1px solid var(--border);
+  border-radius:7px;
+  color:white;
+  margin-bottom:25px;
+}
+h1 {font-size:35px;color:var(--gold)}
+h2 {margin-top:35px;color:var(--gold)}
+p,li {line-height:1.8;color:#c4c4c4}
+a {color:var(--gold)}
+.card {
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:9px;
+  padding:19px;
+  margin:15px 0;
+}
+.tag {color:var(--gold);font-size:11px;letter-spacing:2px}
+footer {
+  padding:25px;
+  color:#777;
+  border-top:1px solid var(--border);
+  text-align:center;
+}
+@media(max-width:700px) {
+  .layout {display:block}
+  aside {width:100%;border-right:0;border-bottom:1px solid var(--border)}
+  nav {display:grid;grid-template-columns:1fr 1fr}
+  main {padding:30px 20px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">DUNE
+    <small>ROLEPLAY DOCUMENTATIE</small>
+  </div>
+</header>
+
+<div class="layout">
+<aside>
+  <h4>DOCUMENTATIE</h4>
+  <input id="search" placeholder="Zoek documentatie...">
+  <nav id="menu"></nav>
+</aside>
+
+<main id="content"></main>
+</div>
+
+<footer>
+  © 2026 Dune Roleplay · Alle rechten voorbehouden
+</footer>
+
+<script>
+const docs = [
+{
+ title:"Welkom",
+ category:"START",
+ intro:"Welkom bij Dune Roleplay!",
+ sections:[
+ ["Welkom in Dune","Dune Roleplay is een Nederlandse roleplaycommunity waarin realistisch, eerlijk en respectvol roleplay centraal staat."],
+ ["Beginnen met spelen","Lees eerst de APV en het wetboek. Zorg dat je de basisregels begrijpt voordat je de stad betreedt."],
+ ["Onze uitgangspunten","Respect, realisme, kwaliteit en plezier staan centraal binnen onze community."]
+ ]
+},
+{
+ title:"Algemene Plaatselijke Verordening",
+ category:"REGELGEVING",
+ intro:"De algemene regels die gelden voor iedere speler binnen Dune Roleplay.",
+ sections:[
+ ["Artikel 1 - Respect","Iedere speler behandelt andere spelers met respect. Belediging, discriminatie en intimidatie zijn niet toegestaan."],
+ ["Artikel 2 - Roleplay","Spelers moeten zich inspannen om realistische en kwalitatieve roleplay neer te zetten."],
+ ["Artikel 3 - Metagaming","Het gebruiken van informatie die buiten de roleplay is verkregen, is niet toegestaan."],
+ ["Artikel 4 - Powergaming","Het afdwingen van acties bij andere spelers zonder redelijke mogelijkheid tot reageren is verboden."],
+ ["Artikel 5 - Fail RP","Onrealistisch gedrag dat de roleplay ernstig verstoort, is niet toegestaan."],
+ ["Artikel 6 - RDM","Het zonder geldige roleplayreden aanvallen of doden van spelers is verboden."],
+ ["Artikel 7 - VDM","Het bewust gebruiken van een voertuig als wapen zonder geldige roleplayreden is verboden."],
+ ["Artikel 8 - Combat logging","Het verlaten van de server om een lopende roleplaysituatie te ontlopen is verboden."],
+ ["Artikel 9 - Exploits","Misbruik maken van bugs, glitches of andere technische fouten is niet toegestaan."],
+ ["Artikel 10 - Staff","Aanwijzingen van bevoegde staffleden moeten worden opgevolgd. Bezwaar kan via de daarvoor bedoelde procedure worden ingediend."]
+ ]
+},
+{
+ title:"Wetboek",
+ category:"REGELGEVING",
+ intro:"Het wetboek beschrijft de strafbare feiten binnen de roleplaywereld.",
+ sections:[
+ ["Hoofdstuk 1 - Vermogensdelicten","Diefstal, inbraak, heling, beroving en fraude zijn strafbare feiten."],
+ ["Hoofdstuk 2 - Geweldsdelicten","Mishandeling, bedreiging, gijzeling en andere geweldsdelicten zijn strafbaar."],
+ ["Hoofdstuk 3 - Wapens","Het onbevoegd bezitten, dragen of gebruiken van verboden wapens kan strafbaar zijn."],
+ ["Hoofdstuk 4 - Verdovende middelen","Productie, bezit, handel en distributie van verboden middelen zijn strafbaar."],
+ ["Hoofdstuk 5 - Verkeersdelicten","Rijden zonder bevoegdheid, gevaarlijk rijgedrag en doorrijden na een ongeval kunnen strafbaar zijn."],
+ ["Hoofdstuk 6 - Strafbepalingen","De concrete boetes, celstraffen en strafverzwarende omstandigheden worden vastgelegd in de definitieve Dune-straftabel."]
+ ]
+},
+{
+ title:"Politie",
+ category:"OVERHEID",
+ intro:"Regels en procedures voor politiefunctionarissen.",
+ sections:[
+ ["Gedrag en professionaliteit","Politiefunctionarissen handelen professioneel, onpartijdig en proportioneel."],
+ ["Aanhoudingen","Een aanhouding moet een geldige roleplaygrond hebben. De reden wordt duidelijk gecommuniceerd."],
+ ["Fouilleren","Fouilleren vindt plaats op basis van een geldige bevoegdheid of roleplaygrond."],
+ ["Bewijs en rapportage","Inbeslagnames, verhoren en relevante incidenten worden correct geregistreerd."],
+ ["Dienst","Dienstkleding, voertuigen en dienstmiddelen worden uitsluitend gebruikt volgens de interne procedures."]
+ ]
+},
+{
+ title:"Ambulance",
+ category:"OVERHEID",
+ intro:"Medische procedures en richtlijnen voor de ambulancedienst.",
+ sections:[
+ ["Medische roleplay","Medewerkers spelen verwondingen en behandelingen realistisch uit."],
+ ["Meldingen","Meldingen worden professioneel behandeld en op basis van urgentie opgevolgd."],
+ ["Behandeling","Medische handelingen worden passend bij de situatie uitgevoerd."],
+ ["Privacy","Medische informatie wordt vertrouwelijk behandeld."],
+ ["Samenwerking","Ambulancepersoneel werkt waar nodig samen met politie en andere hulpdiensten."]
+ ]
+},
+{
+ title:"Mechanic",
+ category:"BEDRIJVEN",
+ intro:"Richtlijnen voor monteurs en bergingsmedewerkers.",
+ sections:[
+ ["Werkzaamheden","Reparaties worden op een professionele en realistische manier uitgevoerd."],
+ ["Tarieven","Gebruik uitsluitend de officieel vastgestelde tarieven."],
+ ["Bedrijfsvoertuigen","Bedrijfsvoertuigen worden uitsluitend voor werkgerelateerde doeleinden gebruikt."],
+ ["Klantcontact","Behandel iedere klant respectvol en communiceer duidelijk over werkzaamheden."]
+ ]
+},
+{
+ title:"Criminaliteit",
+ category:"CRIMINALITEIT",
+ intro:"Regels voor criminele activiteiten binnen Dune Roleplay.",
+ sections:[
+ ["Algemene bepalingen","Criminele roleplay moet een realistische aanleiding hebben en mag niet uitsluitend gericht zijn op winst."],
+ ["Overvallen","Overvallen moeten voldoen aan de vastgestelde voorwaarden en limieten."],
+ ["Gijzelingen","Gijzelingen moeten een geloofwaardige aanleiding hebben en ruimte laten voor tegenroleplay."],
+ ["Drugs","Productie, handel en distributie volgen de vastgestelde serverregels."],
+ ["Groepen","Criminele groepen houden zich aan de officiële groepslimieten en gebiedsregels."]
+ ]
+},
+{
+ title:"Voertuigen",
+ category:"VERKEER",
+ intro:"Verkeersregels en voertuigrichtlijnen.",
+ sections:[
+ ["Verkeersgedrag","Bestuurders houden rekening met verkeersveiligheid en realistische verkeerssituaties."],
+ ["Voertuiggebruik","Gebruik voertuigen passend bij hun eigenschappen en mogelijkheden."],
+ ["Off-road","Rijd niet onrealistisch met voertuigen die daarvoor niet geschikt zijn."],
+ ["Voertuigcriminaliteit","Voertuigdiefstal en achtervolgingen moeten binnen de APV en het wetboek blijven."]
+ ]
+},
+{
+ title:"Ondernemingen",
+ category:"BEDRIJVEN",
+ intro:"Informatie voor ondernemers en werknemers.",
+ sections:[
+ ["Bedrijfsvoering","Iedere onderneming handelt volgens de vastgestelde bedrijfsregels."],
+ ["Personeel","Werkgevers zorgen voor duidelijke afspraken en eerlijke behandeling."],
+ ["Financiën","Bedrijfsinkomsten en uitgaven worden correct bijgehouden."],
+ ["Misbruik","Misbruik van bedrijfsfuncties of bedrijfsmiddelen kan leiden tot sancties."]
+ ]
+},
+{
+ title:"Staff",
+ category:"BEHEER",
+ intro:"Interne richtlijnen voor het Dune Roleplay-team.",
+ sections:[
+ ["Professionaliteit","Staffleden handelen objectief, respectvol en zorgvuldig."],
+ ["Onpartijdigheid","Persoonlijke relaties mogen geen invloed hebben op beslissingen."],
+ ["Sancties","Sancties worden onderbouwd en volgens het officiële sanctiebeleid opgelegd."],
+ ["Vertrouwelijkheid","Interne informatie en persoonsgegevens worden vertrouwelijk behandeld."],
+ ["Klachten","Spelers kunnen via de daarvoor bedoelde procedure een klacht of bezwaar indienen."]
+ ]
+}
+];
+
+const menu=document.getElementById("menu");
+const content=document.getElementById("content");
+let active=0;
+
+function renderMenu(filter="") {
+ menu.innerHTML="";
+ docs.forEach((doc,i)=>{
+  if(!doc.title.toLowerCase().includes(filter.toLowerCase()) &&
+     !doc.intro.toLowerCase().includes(filter.toLowerCase())) return;
+  const b=document.createElement("button");
+  b.textContent=doc.title;
+  b.className=i===active?"active":"";
+  b.onclick=()=>show(i);
+  menu.appendChild(b);
+ });
+}
+
+function show(i) {
+ active=i;
+ const doc=docs[i];
+ content.innerHTML="";
+ const tag=document.createElement("div");
+ tag.className="tag";
+ tag.textContent=doc.category;
+ content.appendChild(tag);
+ const h=document.createElement("h1");
+ h.textContent=doc.title;
+ content.appendChild(h);
+ const intro=document.createElement("p");
+ intro.textContent=doc.intro;
+ content.appendChild(intro);
+ doc.sections.forEach(([heading,body])=>{
+  const card=document.createElement("section");
+  card.className="card";
+  const h=document.createElement("h2");
+  h.textContent=heading;
+  h.style.marginTop="0";
+  const p=document.createElement("p");
+  p.textContent=body;
+  card.append(h,p);
+  content.appendChild(card);
+ });
+ renderMenu(document.getElementById("search").value);
+}
+document.getElementById("search").addEventListener("input",e=>{
+ renderMenu(e.target.value);
+});
+renderMenu();
+show(0);
+</script>
+</body>
+</html>
